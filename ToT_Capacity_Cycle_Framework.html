@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Capacity Cycle — Teams of Tomorrow</title>
+<style>
+  :root {
+    --navy: #034159; --sand: #BFA084; --sage: #A4BF69; --coral: #F2955E;
+    --cream: #E8E6DF; --dark: #2C2C2A; --mgray: #888780;
+    --navy-l: #D6E4EA; --sand-l: #F7EFE4; --sage-l: #EAF4D8; --coral-l: #FDEADC;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--cream); color: var(--dark); }
+  header { background: var(--navy); padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: 5px solid var(--sand); }
+  header h1 { color: white; font-size: 22px; font-weight: 700; }
+  header p { color: var(--sand); font-size: 13px; font-style: italic; }
+  .tagline { color: var(--sand); font-size: 13px; font-style: italic; }
+  main { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+  .arc-bar { display: grid; grid-template-columns: repeat(4,1fr); gap: 4px; margin-bottom: 6px; }
+  .arc-seg { height: 8px; border-radius: 4px; }
+  .arc-labels { display: grid; grid-template-columns: repeat(4,1fr); gap: 4px; margin-bottom: 32px; }
+  .arc-labels span { font-size: 11px; font-weight: 600; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+  .card { border-radius: 14px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: border-color .2s; }
+  .card:hover { border-color: var(--mgray); }
+  .card.active { border-color: var(--dark); }
+  .card-header { padding: 14px 18px 12px; }
+  .card-header .badge { font-size: 11px; font-weight: 700; letter-spacing: .05em; margin-bottom: 6px; }
+  .card-header h2 { font-size: 18px; font-weight: 700; color: white; }
+  .card-header p { font-size: 12px; color: rgba(255,255,255,0.8); margin-top: 2px; }
+  .card-body { padding: 14px 18px; }
+  .card-body .section-title { font-size: 11px; font-weight: 700; letter-spacing: .05em; margin-bottom: 6px; }
+  .card-body p { font-size: 13px; line-height: 1.65; color: var(--dark); margin-bottom: 10px; }
+  .card-body .foot { font-size: 12px; font-style: italic; margin-top: 8px; }
+  .centre-box { border: 2px solid var(--navy); border-radius: 50%; width: 160px; height: 160px; display: flex; align-items: center; justify-content: center; text-align: center; margin: 0 auto 32px; background: var(--cream); cursor: pointer; transition: border-color .2s; }
+  .centre-box:hover { border-color: var(--sand); }
+  .centre-box p { font-size: 14px; font-weight: 700; color: var(--navy); line-height: 1.4; padding: 16px; }
+  .detail { border: 1px solid #ccc; border-radius: 12px; padding: 20px 24px; background: white; min-height: 120px; }
+  .detail .badge-sm { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+  .detail p { font-size: 13px; line-height: 1.7; color: var(--dark); margin-bottom: 10px; }
+  .detail p:last-child { margin-bottom: 0; }
+  .detail .section-h { font-size: 11px; font-weight: 700; letter-spacing: .05em; color: var(--mgray); margin: 12px 0 4px; }
+  .detail .practice { padding: 6px 0; border-bottom: 1px solid #eee; }
+  .detail .practice:last-child { border-bottom: none; }
+  .detail .practice strong { font-size: 12px; display: block; margin-bottom: 2px; }
+  .detail .practice span { font-size: 12px; color: #555; line-height: 1.5; }
+  footer { background: var(--navy); border-top: 5px solid var(--sand); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; margin-top: 40px; }
+  footer p { color: var(--sand); font-size: 12px; }
+  footer .tagline { font-style: italic; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>The Capacity Cycle</h1>
+    <p>The Peter Principle — Updated for Complexity</p>
+  </div>
+  <p class="tagline">Teams of Tomorrow® · Where role meets soul</p>
+</header>
+
+<main>
+  <div class="arc-bar">
+    <div class="arc-seg" style="background:var(--navy);"></div>
+    <div class="arc-seg" style="background:#534AB7;"></div>
+    <div class="arc-seg" style="background:var(--sage);"></div>
+    <div class="arc-seg" style="background:var(--coral);"></div>
+  </div>
+  <div class="arc-labels">
+    <span style="color:var(--navy);">Stage 1 — Conscious competence</span>
+    <span style="color:#534AB7;">Stage 2 — Unconscious competence</span>
+    <span style="color:var(--sage);">Stage 3 — Capacity deficit</span>
+    <span style="color:var(--coral);">Stage 4 — Conscious capacity deficit</span>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="centre-box" onclick="showDetail('centre')">
+    <p>Remaining a learner while leading</p>
+  </div>
+
+  <div class="detail" id="detail">
+    <p style="color:var(--mgray);font-size:13px;">Select a stage above to explore it in depth, or click the centre circle for the integrating challenge.</p>
+  </div>
+</main>
+
+<footer>
+  <p>©Teams of Tomorrow® · Adapted from The Peter Principle to allow for complex task environments</p>
+  <p class="tagline">teamsoftomorrow.net</p>
+</footer>
+
+<script>
+const stages = {
+  1: { badge:"Stage 1", title:"Conscious competence", sub:"Aware of skill, actively applying it", hc:"#034159", bg:"#D6E4EA", tc:"#034159",
+    what:"The leader knows what they are doing and why it works. Decisions feel considered and deliberate. There is a healthy friction between intent and action — they are still learning their craft in context.",
+    practices:[{n:"The risk",b:"Imposter syndrome can surface here — competence exists but isn't yet fully felt."},{n:"Framing",b:"Capacity is well-matched to demand. The leader is growing into the role."}],
+    foot:"Capacity matches demand" },
+  2: { badge:"Stage 2", title:"Unconscious competence", sub:"Mastery becomes instinct", hc:"#534AB7", bg:"#EEEDFE", tc:"#534AB7",
+    what:"Mastery has become instinct. The leader operates fluidly, with decisions feeling natural and outcomes reliably good. This is the peak performance phase — but it carries a hidden structural risk.",
+    practices:[{n:"The hidden risk",b:"The very fluency that signals success can mask an emerging mismatch — when the role expands, the leader may not notice the shift."},{n:"Framing",b:"Capacity and demand are aligned. This is the phase that earns a promotion — and sets the stage for stage 3."}],
+    foot:"The phase that earns promotion" },
+  3: { badge:"Stage 3 · Most dangerous", title:"Capacity deficit", sub:"Demands now exceed current reach", hc:"#7A9B2A", bg:"#EAF4D8", tc:"#4a6600",
+    what:"The role has evolved — or the leader has been elevated — into territory that now exceeds their current capacity. Crucially, they do not yet know this. They continue applying the toolkit that made them successful, reading the resulting friction as a team or strategy problem.",
+    practices:[{n:"The risk",b:"Without external feedback or reflective structure, this phase can persist indefinitely. Organisations sometimes protect leaders from the signal that would help them."},{n:"Framing",b:"Demand has outpaced capacity — but the gap is invisible to the leader. This is the most structurally dangerous phase."}],
+    foot:"The structurally dangerous phase" },
+  4: { badge:"Stage 4 · Key phase", title:"Conscious capacity deficit", sub:"The hinge moment — orientation, not verdict", hc:"#F2955E", bg:"#FDEADC", tc:"#993C1D",
+    what:"The hinge moment. The leader becomes aware that they are operating beyond their current reach. This realisation is not a failure — it is the precondition for growth. How it arrives shapes everything.",
+    practices:[{n:"A shaming realisation",b:"Produces withdrawal, performance anxiety, or entrenchment."},{n:"A supported realisation",b:"Opens the path back to stage 1 — now with a richer map. The language of capacity deficit rather than incompetence makes this possible."}],
+    foot:"Orientation, not verdict" },
+  centre: { badge:"The integrating challenge", title:"Remaining a learner while leading", sub:"The specific developmental task of the threshold", hc:"#034159", bg:"#D6E4EA", tc:"#034159",
+    what:"The goal at the threshold between stages 2 and 3 is not to recover competence quickly — it is to remain a learner while holding a leadership role. That is the specific developmental challenge, and everything else serves it.",
+    practices:[{n:"Why this framing",b:"It is achievable. Unlike 'become competent at everything the role requires,' 'remain a learner' is a posture that can be adopted today, maintained under pressure, and modelled for others."},{n:"The paradox",b:"A leader who openly inhabits the learner posture often commands more genuine authority than one who performs certainty. Teams can sense the difference."}],
+    foot:"The purpose all four domains serve" }
+};
+
+function renderCards() {
+  const grid = document.getElementById('cards');
+  [1,2,3,4].forEach(n => {
+    const s = stages[n];
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.id = 'card-'+n;
+    div.onclick = () => showDetail(n);
+    div.innerHTML = `
+      <div class="card-header" style="background:${s.hc};">
+        <div class="badge" style="color:rgba(255,255,255,0.7);">${s.badge.toUpperCase()}</div>
+        <h2>${s.title}</h2>
+        <p>${s.sub}</p>
+      </div>
+      <div class="card-body" style="background:${s.bg};">
+        <p style="font-size:13px;color:${s.tc};">${s.what.substring(0,120)}...</p>
+        <p class="foot" style="color:${s.tc};">${s.foot}</p>
+      </div>`;
+    grid.appendChild(div);
+  });
+}
+
+function showDetail(id) {
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+  if (document.getElementById('card-'+id)) document.getElementById('card-'+id).classList.add('active');
+  const s = stages[id];
+  const practices = s.practices.map(p => `<div class="practice"><strong style="color:${s.hc};">${p.n}</strong><span>${p.b}</span></div>`).join('');
+  document.getElementById('detail').innerHTML = `
+    <span class="badge-sm" style="background:${s.bg};color:${s.tc};">${s.badge}</span>
+    <p>${s.what}</p>
+    <p class="section-h">Key points</p>
+    ${practices}
+    <p class="section-h" style="margin-top:12px;">Framing</p>
+    <p style="font-style:italic;color:${s.hc};">${s.foot}</p>`;
+}
+
+renderCards();
+showDetail(3);
+</script>
+</body>
+</html>

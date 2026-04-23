@@ -33,9 +33,9 @@
   .card-body .section-title { font-size: 11px; font-weight: 700; letter-spacing: .05em; margin-bottom: 6px; }
   .card-body p { font-size: 13px; line-height: 1.65; color: var(--dark); margin-bottom: 10px; }
   .card-body .foot { font-size: 12px; font-style: italic; margin-top: 8px; }
-  .centre-box { border: 2px solid var(--navy); border-radius: 50%; width: 160px; height: 160px; display: flex; align-items: center; justify-content: center; text-align: center; margin: 0 auto 32px; background: var(--cream); cursor: pointer; transition: border-color .2s; }
-  .centre-box:hover { border-color: var(--sand); }
-  .centre-box p { font-size: 14px; font-weight: 700; color: var(--navy); line-height: 1.4; padding: 16px; }
+  .centre-box { border: 2px solid var(--navy); border-radius: 50%; width: 160px; height: 160px; display: flex; align-items: center; justify-content: center; text-align: center; margin: 0 auto 32px; background: var(--navy); cursor: pointer; transition: border-color .2s, background .2s; }
+  .centre-box:hover { border-color: var(--sand); background: #045270; }
+  .centre-box p { font-size: 13px; font-weight: 700; color: white; line-height: 1.4; padding: 16px; }
   .detail { border: 1px solid #ccc; border-radius: 12px; padding: 20px 24px; background: white; min-height: 120px; }
   .detail .badge-sm { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
   .detail p { font-size: 13px; line-height: 1.7; color: var(--dark); margin-bottom: 10px; }
@@ -76,7 +76,7 @@
   <div class="grid" id="cards"></div>
 
   <div class="centre-box" onclick="showDetail('centre')">
-    <p>Remaining a learner while leading</p>
+    <p>The importance of becoming a learner while leading</p>
   </div>
 
   <div class="detail" id="detail">
